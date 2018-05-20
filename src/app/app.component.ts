@@ -5,6 +5,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { DataService } from './services/data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { config } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,9 @@ export class AppComponent {
     this._dataService
         .getGeneralNotificationMessage()
         .subscribe(msg => {
-          this._snackBar.open(msg, 'Ok');
+          this._snackBar.open(msg, 'Ok', {
+            duration: 2000
+          });
         });
   }
 }

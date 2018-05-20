@@ -47,7 +47,6 @@ export const MATERIAL_COMPONENTS = [
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [APP_PROVIDERS],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
