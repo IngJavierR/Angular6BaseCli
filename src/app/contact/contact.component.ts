@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
@@ -7,9 +8,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+  formInfo: FormArray;
+  constructor(private fb: FormBuilder) { }
+  
+  profileForm = this.fb.group({
+    formInfoGroups : this.fb.array([])
+  });
+
+  get formInfoGroups() {
+    return this.profileForm.get('formInfoGroups') as FormArray;
+  }
 
   ngOnInit() {
+    this.agregar();
+  }
+
+  submit() {
+    this.formInfoGroups.controls.forEach(x => console.log(x.value));
+  } 
+
+  agregar() {
+    this.formInfoGroups.push(this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      address: this.fb.group({
+        street: ['', Validators.required],
+        city: ['', Validators.required]
+      })
+    }));
   }
 
 }

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule,
         MatSidenavModule,
         MatButtonModule,
@@ -13,12 +13,14 @@ import { MatToolbarModule,
         MatIconModule,
         MatInputModule,
         MatProgressBarModule,
-        MatSnackBarModule } from '@angular/material';
+        MatSnackBarModule,
+        MatSelectModule } from '@angular/material';
 
 import { APP_PROVIDERS } from './app.providers';
 import { MainComponent } from './main/main.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { FormularioComponent } from './formulario/formulario.component';
 
 export const MATERIAL_COMPONENTS = [
   MatToolbarModule,
@@ -28,7 +30,8 @@ export const MATERIAL_COMPONENTS = [
   MatIconModule,
   MatInputModule,
   MatProgressBarModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatSelectModule
 ]
 
 @NgModule({
@@ -36,7 +39,8 @@ export const MATERIAL_COMPONENTS = [
     AppComponent,
     MainComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    FormularioComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +49,7 @@ export const MATERIAL_COMPONENTS = [
     BrowserAnimationsModule,
     MATERIAL_COMPONENTS,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
   bootstrap: [AppComponent]
