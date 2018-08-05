@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { Routes } from '@angular/router';
+import { Routes, Router } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { DataService } from './services/data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { config } from 'rxjs';
+import { LoginGuard } from './guards/login.guard';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,7 @@ export class AppComponent {
   title = 'app';
   isLoading = false;
   isLogged = false;
-  constructor(private _dataService: DataService, private _snackBar: MatSnackBar){
+  constructor(private _dataService: DataService, private _snackBar: MatSnackBar, private router: Router){
     this.isLogged = this._dataService.isLogged;
     this._dataService
         .getIsLoadingEvent()
@@ -32,6 +32,12 @@ export class AppComponent {
           });
         });
   }
+
+  logout() {
+    console.log('out');
+    this.router.navigateByUrl('/');
+    this._dataService.setIsLogged(false);
+  }
 }
 
 export const routes: Routes = [
@@ -41,10 +47,13 @@ export const routes: Routes = [
   },
   { 
     path: 'about', 
-    component: AboutComponent 
+    component: AboutComponent,
+    canActivate: [LoginGuard]
   },
   { 
     path: 'contact', 
-    component: ContactComponent 
-  }
+    component: ContactComponent,
+    canActivate: [LoginGuard]
+  },
+  { path: '**', redirectTo: '' }
 ];
