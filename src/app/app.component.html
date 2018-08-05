@@ -1,5 +1,5 @@
 <mat-sidenav-container>
-  <mat-toolbar class="toolbar-text" color="primary">
+  <mat-toolbar class="toolbar-text" color="primary" *ngIf="isLogged">
       <mat-icon class="hand-cursor" (click)="sidenav.open()">reorder</mat-icon>
       <div class="toolbar-container">
           Angular5+ Base Material
@@ -10,7 +10,7 @@
           </div>
       </div>
   </mat-toolbar>
-  <mat-sidenav #sidenav>
+  <mat-sidenav #sidenav *ngIf="isLogged">
       <mat-toolbar class="toolbar-text" color="primary">
           Menu
       </mat-toolbar>

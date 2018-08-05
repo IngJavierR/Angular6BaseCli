@@ -10,6 +10,8 @@ export class DataService {
 
   private generalNotificationMessage = new Subject<string>();
   private isLoading = new Subject<boolean>();
+  public isLogged: boolean;
+  public isLoggedEvent = new Subject<boolean>();
 
   getGeneralNotificationMessage() {
       return this.generalNotificationMessage.asObservable();
@@ -27,4 +29,12 @@ export class DataService {
       this.isLoading.next(isLoading);
   }
 
+  getIsLogged() {
+    return this.isLoggedEvent.asObservable();
+  }
+
+  setIsLogged(isLogged: boolean) {
+      this.isLogged = isLogged;
+      this.isLoggedEvent.next(isLogged);
+  }
 }

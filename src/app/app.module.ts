@@ -16,7 +16,6 @@ import { MatToolbarModule,
         MatSnackBarModule,
         MatSelectModule } from '@angular/material';
 
-import { APP_PROVIDERS } from './app.providers';
 import { MainComponent } from './main/main.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';

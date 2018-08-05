@@ -15,10 +15,15 @@ import { config } from 'rxjs';
 export class AppComponent {
   title = 'app';
   isLoading = false;
+  isLogged = false;
   constructor(private _dataService: DataService, private _snackBar: MatSnackBar){
+    this.isLogged = this._dataService.isLogged;
     this._dataService
         .getIsLoadingEvent()
         .subscribe(isLoad => this.isLoading = isLoad);
+    this._dataService
+        .getIsLogged()
+        .subscribe(isLogged => this.isLogged = isLogged);
     this._dataService
         .getGeneralNotificationMessage()
         .subscribe(msg => {
