@@ -16,7 +16,7 @@ export class ContactComponent implements OnInit {
   });
 
   get formInfoGroups() {
-    return this.profileForm.get('formInfoGroups') as FormArray;
+    return <FormArray>this.profileForm.get('formInfoGroups');
   }
 
   ngOnInit() {
